@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: [$PROD] World\" && exit 0"
+    "showEnv": "printenv",
+    "test": "echo \"[$CIRCLE_USERNAME]: [$PROD] World\" && exit 0"
   },
   "repository": {
     "type": "git",
