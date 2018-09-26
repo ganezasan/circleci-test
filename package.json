@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "showEnv": "printenv",
     "test": "echo \"[$CIRCLE_USERNAME]: [$PROD] World\" && exit 0"
   },
   "repository": {
