@@ -1,57 +1,21 @@
 version: 2
 jobs:
-  build:
+  deploy-website:
     docker:
-      # specify the version you desire here
-      - image: circleci/node:10
-
-    working_directory: ~/repo
+    - image: circleci/node:8.11.1
     steps:
-      - run:
-          command: |
-            mkdir ~/.ssh
-            echo $PUBLIC_SSH_KEY >> ~/.ssh/authorized_keys
-            chmod 700 ~/.ssh
-            chmod 600 ~/.ssh/authorized_keys
-      - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "46:55:4e:2d:f6:38:ee:75:94:c8:f9:bb:09:4d:2a:e1"
-      - run: ssh -Tv git@bitbucket.org
-      - run:
-          name: remove and add ssh key
-          command: |
-            ssh-add -D
-            ssh-add ~/.ssh/id_rsa
-      - run:
-          name: test commit
-          command: |
-            git config --global user.email "istaka12@gmail.com"
-            git config --global user.name "ganezasan"
-            echo "test" >> README.md
-            git add .
-            git commit -m 'update README'
-            git push origin master
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: yarn test
-
-
+    - checkout
+    - run:
+        name: Deploying to GitHub Pages
+        command: |
+          echo $CI_PULL_REQUEST
+          echo $CIRCLE_PULL_REQUEST
+    - run:
+        name: check
+        command: |
+          node test.js
 workflows:
   version: 2
-  build:
+  build_and_deploy:
     jobs:
-      - build
+      - deploy-website
