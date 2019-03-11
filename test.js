@@ -1,3 +1,5 @@
+var shell = require('shell');
+
 const IS_PULL_REQUEST =
   process.env.CI_PULL_REQUEST || process.env.CIRCLE_PULL_REQUEST;
 

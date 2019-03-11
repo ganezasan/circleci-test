@@ -11,6 +11,10 @@ jobs:
           echo $CI_PULL_REQUEST
           echo $CIRCLE_PULL_REQUEST
     - run:
+        name: npm install
+        command: |
+          npm install
+    - run:
         name: check
         command: |
           node test.js
