@@ -17,6 +17,6 @@ workflows:
         filters:
           branches:
             only:
-            - develop
+            - develop/test
     jobs:
     - build
