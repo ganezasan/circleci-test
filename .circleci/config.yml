@@ -19,6 +19,7 @@ workflows:
             only:
             - /aaaa\/kburns/
             - /^aaaa.*/
-            - /kburns/
+            - aaaa
+            - '/aaaa\/kburns/'
     jobs:
     - build
