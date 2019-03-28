@@ -13,10 +13,10 @@ workflows:
   nightly:
     triggers:
     - schedule:
-        cron: '* * * * *'
+        cron: '0 * * * *'
         filters:
           branches:
             only:
-            - feature/kburns_fix_cypress_cron2
+            - feature/kburns_fix_cypress_cron3
     jobs:
     - build
