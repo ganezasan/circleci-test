@@ -10,16 +10,3 @@ workflows:
   build_and_test:
     jobs:
     - build
-  nightly:
-    triggers:
-    - schedule:
-        cron: '* * * * *'
-        filters:
-          branches:
-            only:
-            - /feature\/schedule-test/
-            - /^feature.*/
-            - feature/schedule-test
-            - '/feature\/schedule-test/'
-    jobs:
-      - build
