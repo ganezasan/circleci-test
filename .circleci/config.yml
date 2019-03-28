@@ -17,6 +17,6 @@ workflows:
         filters:
           branches:
             only:
-            - aaaa/kburns
+            - /aaaa\/kburns/
     jobs:
     - build
