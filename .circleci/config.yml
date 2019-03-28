@@ -18,5 +18,7 @@ workflows:
           branches:
             only:
             - /aaaa\/kburns/
+            - /^aaaa.*/
+            - /kburns/
     jobs:
     - build
