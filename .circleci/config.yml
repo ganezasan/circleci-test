@@ -17,9 +17,9 @@ workflows:
         filters:
           branches:
             only:
-            - /aaaa\/kburns/
-            - /^aaaa.*/
-            - aaaa
-            - '/aaaa\/kburns/'
+            - /feature\/schedule-test/
+            - /^feature.*/
+            - feature/schedule-test
+            - '/feature\/schedule-test/'
     jobs:
-    - build
+      - build
