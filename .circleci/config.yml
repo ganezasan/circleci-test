@@ -17,6 +17,6 @@ workflows:
         filters:
           branches:
             only:
-            - develop/test
+            - feature/kburns_fix_cypress_cron2
     jobs:
     - build
