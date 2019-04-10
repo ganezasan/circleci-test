@@ -33,6 +33,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: echo $PROD
+      - run: exit 1
   test:
     docker:
       # specify the version you desire here
