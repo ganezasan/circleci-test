@@ -40,3 +40,10 @@ jobs:
               git config --global user.name "ganezasan"
       - run: git commit --allow-empty -m '[ci skip] test'
       - run: git push origin test/deploy-key
+      - run:
+          name: push another repo
+          command: |
+              git clone git@github.com:ganezasan/circleci-sandbox.git
+              cd circleci-sandbox
+              git commit --allow-empty -m '[ci skip] test'
+              git push origin master:test/deploy-key
