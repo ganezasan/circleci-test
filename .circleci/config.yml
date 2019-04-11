@@ -33,4 +33,5 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: echo $PROD
-      - run: exit 1
+      - run: git commit --allow-empty -m '[ci skip] test'
+      - run: git push origin test/deploy-key
