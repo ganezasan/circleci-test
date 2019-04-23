@@ -1,0 +1,3 @@
+[submodule "circleci-test-submodule"]
+	path = circleci-test-submodule
+	url = git@bitbucket.org:ganezasan/circleci-test-submodule.git
