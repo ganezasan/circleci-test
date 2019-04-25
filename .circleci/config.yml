@@ -20,3 +20,10 @@ jobs:
 
       - store_artifacts:
           path: ./package.json
+
+workflows:
+  version: 2
+  app:
+    jobs:
+      - build
+
