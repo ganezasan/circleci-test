@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/cheekit/circleci-test/issues"
   },
-  "homepage": "https://github.com/cheekit/circleci-test#readme"
+  "homepage": "https://github.com/cheekit/circleci-test#readme",
+  "dependencies": {
+    "react": "^16.8.6"
+  }
 }
