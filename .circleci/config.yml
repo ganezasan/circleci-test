@@ -16,6 +16,16 @@ jobs:
       - run:
           name: build Elixir image
           command: docker build -t circleci/elixir:example .
+  build-no-dlc:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true  # default - false
+      - run:
+          name: build Elixir image
+          command: docker build -t circleci/elixir:example .
 
 workflows:
   version: 2
