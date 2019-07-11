@@ -16,7 +16,7 @@ jobs:
       - run:
           name: build Elixir image
           command: docker build -t circleci/elixir:example .
-  build-no-dlc:
+  build-dlc-with-setup_remote_docker:
     docker:
       - image: circleci/node:latest
     steps:
@@ -33,3 +33,4 @@ workflows:
     jobs:
       - build
       - build-no-dlc
+      - build-dlc-with-setup_remote_docker
