@@ -7,6 +7,11 @@ jobs:
     steps:
       - checkout
       - run: echo $DEPLOY_KEY
+  cron-job:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - run: echo "Good night world"
 
 workflows:
   version: 2
@@ -14,3 +19,13 @@ workflows:
     jobs:
       - build:
           context: development
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0,5,10,15,20,25,30,35,40,45,50,55,60 * * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - cron-job
