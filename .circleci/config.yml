@@ -1,8 +1,7 @@
 version: 2
 jobs:
   build:
-    machine:
-      image: ubuntu-1604:201903-01
+    machine: true
     steps:
       - checkout
       - run: echo "hello"
