@@ -13,6 +13,16 @@ jobs:
     steps:
       - checkout
       - run: echo "hello world"
+  build-small:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:latest
+
+    working_directory: ~/repo
+    resource_class: large
+    steps:
+      - checkout
+      - run: echo "hello world"
   build-large:
     docker:
       # specify the version you desire here
@@ -29,4 +39,5 @@ workflows:
   workflow:
     jobs:
       - build
+      - build-small
       - build-large
