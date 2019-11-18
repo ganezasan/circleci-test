@@ -44,6 +44,7 @@ workflows:
   version: 2
   workflow:
     jobs:
-      - build
-      - build-small
-      - build-large
+      # - build
+      # - build-small
+      # - build-large
+      - build-machine-large
