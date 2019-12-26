@@ -4,6 +4,7 @@ jobs:
     docker:
       - image: centos/python-36-centos7
         user: root
+    working_directory: /opt/app-root/src
     steps:
       - run: 
           name: check OS environment
