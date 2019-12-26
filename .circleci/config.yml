@@ -7,6 +7,10 @@ jobs:
     working_directory: /opt/app-root/src
     steps:
       - run: 
+          name: check dir
+          command: |
+            ls -lR /opt/app-root/src
+      - run: 
           name: check OS environment
           command: |
             cat /etc/os-release
