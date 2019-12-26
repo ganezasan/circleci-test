@@ -3,29 +3,29 @@ jobs:
   build:
     docker:
       - image: centos/python-36-centos7
-        user: root
+        # user: root
     working_directory: /opt/app-root/src/project
     steps:
       - run: 
           name: check dir
           command: |
             ls -lR /opt/app-root/src
-      - run: 
-          name: check OS environment
-          command: |
-            cat /etc/os-release
-            uname -r
-            python --version
-            pip --version
-            pwd
-            ls -alh
-            export USER=$(id -un)
-            echo "user is $USER"
-            id -un && id -gn
-            yum install -y sudo
-            usermod -aG wheel $USER
-            cat /etc/sudoers
-            chown -R $USER /usr/local
+      # - run: 
+      #     name: check OS environment
+      #     command: |
+      #       cat /etc/os-release
+      #       uname -r
+      #       python --version
+      #       pip --version
+      #       pwd
+      #       ls -alh
+      #       export USER=$(id -un)
+      #       echo "user is $USER"
+      #       id -un && id -gn
+      #       yum install -y sudo
+      #       usermod -aG wheel $USER
+      #       cat /etc/sudoers
+      #       chown -R $USER /usr/local
       - checkout
 
 
