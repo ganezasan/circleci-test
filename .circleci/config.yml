@@ -1,36 +1,31 @@
 version: 2
 jobs:
   build:
-    machine:
-      docker_layer_caching: true
-    steps:
-      - checkout
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
-
-  build-no-dlc:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
-  build-dlc-with-setup_remote_docker:
     docker:
-      - image: circleci/node:latest
+      - image: centos/python-36-centos7
+        user: root
     steps:
+      - run: 
+          name: check OS environment
+          command: |
+            cat /etc/os-release
+            uname -r
+            python --version
+            pip --version
+            pwd
+            ls -alh
+            export USER=$(id -un)
+            echo "user is $USER"
+            id -un && id -gn
+            yum install -y sudo
+            usermod -aG wheel $USER
+            cat /etc/sudoers
+            chown -R $USER /usr/local
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true  # default - false
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
+
 
 workflows:
   version: 2
   app:
     jobs:
       - build
-      - build-no-dlc
-      - build-dlc-with-setup_remote_docker
