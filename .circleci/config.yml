@@ -5,13 +5,13 @@ jobs:
       - image: centos/python-36-centos7
         user: root
     environment:
-      HOME: /opt/app-root/src
+      HOME: /root
     working_directory: /opt/app-root/src/project
     steps:
-      - run:
-          name: Avoid hosts unknown for github
-          command: |
-            ln -s ~/.ssh/ /root/
+      # - run:
+      #     name: create symbolic link for setting ssh
+      #     command: |
+      #       ln -s ~/.ssh/ /root/
       - run: 
           name: check OS environment
           command: |
