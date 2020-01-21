@@ -1,28 +1,15 @@
 version: 2
 jobs:
-  build:
+  build: # name of your job
     machine:
-      docker_layer_caching: true
+      image: windows-default # Windows machine image
+    resource_class: windows.medium
     steps:
-      - checkout
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
-
-  build-dlc-with-setup_remote_docker:
-    docker:
-      - image: circleci/node:latest
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true  # default - false
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
-
+      # Commands are run in a Windows virtual machine environment
+        - checkout
+        - run: Write-Host 'Hello, Windows'
 workflows:
   version: 2
   app:
     jobs:
       - build
-      - build-dlc-with-setup_remote_docker
