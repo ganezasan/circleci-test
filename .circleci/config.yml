@@ -1,13 +1,18 @@
 version: 2
 jobs:
   build: # name of your job
-    machine:
-      image: windows-default # Windows machine image
-    resource_class: windows.medium
+    docker:
+      - image: circleci/node:latest
     steps:
-      # Commands are run in a Windows virtual machine environment
+        - add_ssh_keys:
+            fingerprints:
+              - "57:fd:88:83:6c:06:5a:3f:b4:fc:27:f0:cb:dd:ad:54"
         - checkout
-        - run: Write-Host 'Hello, Windows'
+        - run:
+            command: |
+              git config --global user.email "istaka12@gmail.com"
+              git config --global user.name "ganezasan"
+              git commit --allow-empty -m '[ci skip] test commit'
 workflows:
   version: 2
   app:
