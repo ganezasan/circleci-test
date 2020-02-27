@@ -33,4 +33,5 @@ workflows:
   app:
     jobs:
       - build
+      - build-no-dlc
       - build-dlc-with-setup_remote_docker
