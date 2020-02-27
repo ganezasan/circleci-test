@@ -33,23 +33,24 @@ jobs:
   #         name: build Elixir image
   #         command: docker build -t circleci/elixir:example .
   #
-  # build-dlc-with-setup_remote_docker:
-  #   docker:
-  #     - image: circleci/node:latest
-  #   steps:
-  #     - checkout
-  #     - setup_remote_docker:
-  #         docker_layer_caching: true  # default - false
-  #     - run:
-  #         name: build Elixir image
-  #         command: docker build -t circleci/elixir:example .
+  build-dlc-with-setup_remote_docker:
+    docker:
+      - image: circleci/node:latest
+    resource_class: massive
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true  # default - false
+      - run:
+          name: build Elixir image
+          command: docker build -t circleci/elixir:example .
 
 workflows:
   version: 2
   app:
     jobs:
       - build
-      - build-no-dlc-medium
-      - build-no-dlc-large
-      - build-no-dlc-default
+      # - build-no-dlc-medium
+      # - build-no-dlc-large
+      # - build-no-dlc-default
       - build-dlc-with-setup_remote_docker
