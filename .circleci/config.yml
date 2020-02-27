@@ -1,48 +1,48 @@
 version: 2
 jobs:
   build:
-    machine:
-      docker_layer_caching: true
-    steps:
-      - checkout
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
-  build-no-dlc-default:
     machine: true
-    resource_class: default
+    resource_class: test
     steps:
       - checkout
       - run:
           name: build Elixir image
           command: docker build -t circleci/elixir:example .
-  build-no-dlc-medium:
-    machine: true
-    resource_class: medium
-    steps:
-      - checkout
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
-  build-no-dlc-large:
-    machine: true
-    resource_class: large
-    steps:
-      - checkout
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
-
-  build-dlc-with-setup_remote_docker:
-    docker:
-      - image: circleci/node:latest
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true  # default - false
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
+  # build-no-dlc-default:
+  #   machine: true
+  #   resource_class: default
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: build Elixir image
+  #         command: docker build -t circleci/elixir:example .
+  # build-no-dlc-medium:
+  #   machine: true
+  #   resource_class: medium
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: build Elixir image
+  #         command: docker build -t circleci/elixir:example .
+  # build-no-dlc-large:
+  #   machine: true
+  #   resource_class: large
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: build Elixir image
+  #         command: docker build -t circleci/elixir:example .
+  #
+  # build-dlc-with-setup_remote_docker:
+  #   docker:
+  #     - image: circleci/node:latest
+  #   steps:
+  #     - checkout
+  #     - setup_remote_docker:
+  #         docker_layer_caching: true  # default - false
+  #     - run:
+  #         name: build Elixir image
+  #         command: docker build -t circleci/elixir:example .
 
 workflows:
   version: 2
