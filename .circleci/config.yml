@@ -18,7 +18,6 @@ jobs:
   #         command: docker build -t circleci/elixir:example .
   build-no-dlc-medium:
     machine: true
-    resource_class: medium
     steps:
       - checkout
       - run:
@@ -36,7 +35,6 @@ jobs:
   build-dlc-with-setup_remote_docker:
     docker:
       - image: circleci/node:latest
-    resource_class: massive
     steps:
       - checkout
       - setup_remote_docker:
