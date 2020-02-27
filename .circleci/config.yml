@@ -8,8 +8,17 @@ jobs:
       # Commands are run in a Windows virtual machine environment
         - checkout
         - run: Write-Host 'Hello, Windows'
+  build-large: # name of your job
+    machine:
+      image: windows-default # Windows machine image
+    resource_class: windows.large
+    steps:
+      # Commands are run in a Windows virtual machine environment
+        - checkout
+        - run: Write-Host 'Hello, Windows'
 workflows:
   version: 2
-  app:
+  windows:
     jobs:
       - build
+      - build-large
