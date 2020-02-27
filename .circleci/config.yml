@@ -16,14 +16,14 @@ jobs:
   #     - run:
   #         name: build Elixir image
   #         command: docker build -t circleci/elixir:example .
-  # build-no-dlc-medium:
-  #   machine: true
-  #   resource_class: medium
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: build Elixir image
-  #         command: docker build -t circleci/elixir:example .
+  build-no-dlc-medium:
+    machine: true
+    resource_class: medium
+    steps:
+      - checkout
+      - run:
+          name: build Elixir image
+          command: docker build -t circleci/elixir:example .
   # build-no-dlc-large:
   #   machine: true
   #   resource_class: large
@@ -50,7 +50,7 @@ workflows:
   app:
     jobs:
       - build
-      # - build-no-dlc-medium
+      - build-no-dlc-medium
       # - build-no-dlc-large
       # - build-no-dlc-default
-      - build-dlc-with-setup_remote_docker
+      # - build-dlc-with-setup_remote_docker
