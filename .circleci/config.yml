@@ -1,13 +1,13 @@
 version: 2
 jobs:
-  build:
-    machine: true
-    resource_class: test
-    steps:
-      - checkout
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
+  # build:
+  #   machine: true
+  #   resource_class: test
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: build Elixir image
+  #         command: docker build -t circleci/elixir:example .
   # build-no-dlc-default:
   #   machine: true
   #   resource_class: default
@@ -49,8 +49,8 @@ workflows:
   version: 2
   app:
     jobs:
-      - build
+      # - build
       - build-no-dlc-medium
       # - build-no-dlc-large
       # - build-no-dlc-default
-      # - build-dlc-with-setup_remote_docker
+      - build-dlc-with-setup_remote_docker
