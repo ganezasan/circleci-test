@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:latest
-    resource_class: 2xlarge
+    resource_class: massive
     parallelism: 2
     steps:
       - checkout
