@@ -1,11 +1,11 @@
 version: 2
 jobs:
   build:
-    machine:
-      machine:
-      image: ubuntu-1604:201903-01    # recommended linux image - includes Ubuntu 16.04, docker 18.09.3,
+    docker:
+      - image: circleci/node:latest
+    parallelism: 31
+    resource_class: small
     steps:
-      - checkout
       - run: echo "hello"
 
 workflows:
