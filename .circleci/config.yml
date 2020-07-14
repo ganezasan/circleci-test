@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:latest
     resource_class: small
     steps:
-      - run: sleep 300
+      - run: sleep 600
 
 workflows:
   version: 2
