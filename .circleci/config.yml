@@ -3,10 +3,9 @@ jobs:
   build:
     docker:
       - image: circleci/node:latest
-    parallelism: 31
     resource_class: small
     steps:
-      - run: echo "hello"
+      - run: sleep 300
 
 workflows:
   version: 2
