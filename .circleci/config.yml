@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:latest
     resource_class: small
     steps:
-      - run: exit 1
+      - run: echo "HELLO"
 
 workflows:
   version: 2
