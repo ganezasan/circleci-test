@@ -1,55 +1,31 @@
 version: 2
 jobs:
-  build:
-    machine:
-      image: registry.hub.docker.com/circleci/node:latest
+  build-setup_remote_docker:
+    docker:
+      - image: circleci/node:latest
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: build Elixir image
           command: docker build -t circleci/elixir:example .
-  build-no-dlc-default:
-    machine: true
-    resource_class: default
-    steps:
-      - checkout
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
-  build-no-dlc-medium:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
-  # build-no-dlc-large:
-  #   machine: true
-  #   resource_class: large
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: build Elixir image
-  #         command: docker build -t circleci/elixir:example .
-  #
-  build-dlc-with-setup_remote_docker:
+  build-setup_remote_docker-v18:
     docker:
       - image: circleci/node:latest
     steps:
       - checkout
       - setup_remote_docker:
-          docker_layer_caching: true  # default - false
+          version: 18.06.0-ce
       - run:
           name: build Elixir image
           command: docker build -t circleci/elixir:example .
-  build-dlc-with-setup_remote_docker-medium:
+  build-dlc-with-setup_remote_docker-v19:
     docker:
       - image: circleci/node:latest
-    resource_class: medium
     steps:
       - checkout
       - setup_remote_docker:
-          docker_layer_caching: true  # default - false
+          version: 19.03.12
       - run:
           name: build Elixir image
           command: docker build -t circleci/elixir:example .
@@ -58,9 +34,6 @@ workflows:
   version: 2
   app:
     jobs:
-      - build
-      # - build-no-dlc-medium
-      # # - build-no-dlc-large
-      # # - build-no-dlc-default
-      # - build-dlc-with-setup_remote_docker
-      # - build-dlc-with-setup_remote_docker-medium
+      - build-setup_remote_docker
+      - build-setup_remote_docker-v18
+      - build-setup_remote_docker-v19
