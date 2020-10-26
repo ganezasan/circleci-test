@@ -1,12 +1,10 @@
 version: 2
 jobs:
   build:
-    machine:
-      machine:
-      image: ubuntu-1604:201903-01    # recommended linux image - includes Ubuntu 16.04, docker 18.09.3,
+    machine: true
     steps:
-      - checkout
-      - run: echo "hello"
+      - run: docker pull takamaru/private-image-test:latest
+
 
 workflows:
   version: 2
