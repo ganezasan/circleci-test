@@ -1,10 +1,10 @@
 version: 2
 jobs:
   build:
-    machine: true
+    docker:
+      - image: circleci/node:latest
     steps:
-      - run: docker pull takamaru/private-image-test:latest
-
+      - run: echo "hello" 
 
 workflows:
   version: 2
