@@ -1,12 +1,15 @@
 version: 2
 jobs:
   build:
-    machine: true
-    working_directory: ~/repo
+    docker: 
+      - image: circleci/node:latest
+      - image: takamaru/postgres-test:latest
+      - image: circleci/postgres:9.6-alpine
+    environment:
+        POSTGRES_USER: postgres
+        POSTGRES_DB: postgres
+        POSTGRES_PASSWORD: pytestSamplePassword12345
     steps:
-      - checkout
-      - run: echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIpYoZ3lSrw2mjJFOI7Fv99KJeM605Q84A5/PVTm6ZBMGHIaCGbLPwthRUSORqRR34AT970SpXz/jABL52m4DgFRp6fVAhPVsT43Way3i4AIA4+3tBb6vXxiV4CrGUgObAU0TKBRTnWIpg5fFwPVRGgCmOLaUvW5LQA6S0kq2JKzywPKOYTx81NIUig0poFmS/SPe9wawkXjC6NX2WL82Fm6k5cH4UZa1EpbfmNN3S69R8PNNyBZOtV4Fe0GlCM71jOidv7pRRnOYQXNHEbXXHv7vj5cgKzGMRdXJueY100U6Yhlaw5RcPmQA9HPvj00+eV0h8vIenFmwzpzfMyVh/ istaka12@gmail.com" | sudo tee -a ~/.ssh/authorized_keys
-      - run: ps ax | grep ssh
       - run: sleep 3000
 
 workflows:
