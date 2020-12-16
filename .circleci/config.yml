@@ -3,7 +3,7 @@ jobs:
   build:
     docker: 
       - image: circleci/node:latest
-      - image: takamaru/postgres-test:latest
+      - image: nginx:latest
       - image: circleci/postgres:9.6-alpine
     environment:
         POSTGRES_USER: postgres
