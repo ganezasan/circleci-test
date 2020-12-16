@@ -1,65 +1,160 @@
 version: 2
 
-shared: &shared
-  foo: bar
+references:
+  envvars-test: &envvars-test
+    KEY: test
+  dummy-job: &dummy-job
+    docker:
+      - image: circleci/node:12.16.0
+    resource_class: medium
+    steps:
+      - checkout
+      - run:
+          name: "hoge fuga"
+          command: |
+            echo hoge
+            echo fuga
+      - run:
+          name: "checkout submodules"
+          command: |
+            git submodule update --init
+      - restore_cache:
+          name: "restore modules"
+          keys:
+            - package-lock-json-{{ checksum "package-lock.json" }}
+      - run:
+          name: "install dependecies"
+          command: |
+            npm install
+      - save_cache:
+          name: "save modules"
+          key: package-lock-json-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: "hoge fuga"
+          command: |
+            echo hoge
+            echo fuga
+      - run:
+          name: "hoge fuga"
+          command: |
+            echo hoge
+            echo fuga
+          no_output_timeout: 30m
+      - run:
+          name: "hoge fuga"
+          command: |
+            echo hoge
+            echo fuga
+      - run:
+          name: "hoge fuga"
+          command: |
+            echo hoge
+            echo fuga
+          when: on_fail
 
 jobs:
-  build:
+  test:
     docker:
-      - image: alpine
+      - image: circleci/node:12.16.0
     resource_class: large
     steps:
-      - run: exit
-    anchor-1: *shared
-    anchor-2: *shared
-    anchor-3: *shared
-    anchor-4: *shared
-    anchor-5: *shared
-    anchor-6: *shared
-    anchor-7: *shared
-    anchor-8: *shared
-    anchor-9: *shared
-    anchor-10: *shared
-    anchor-11: *shared
-    anchor-12: *shared
-    anchor-13: *shared
-    anchor-14: *shared
-    anchor-15: *shared
-    anchor-16: *shared
-    anchor-17: *shared
-    anchor-18: *shared
-    anchor-19: *shared
-    anchor-20: *shared
-    anchor-21: *shared
-    anchor-22: *shared
-    anchor-23: *shared
-    anchor-24: *shared
-    anchor-25: *shared
-    anchor-26: *shared
-    anchor-27: *shared
-    anchor-28: *shared
-    anchor-29: *shared
-    anchor-30: *shared
-    anchor-31: *shared
-    anchor-32: *shared
-    anchor-33: *shared
-    anchor-34: *shared
-    anchor-35: *shared
-    anchor-36: *shared
-    anchor-37: *shared
-    anchor-38: *shared
-    anchor-39: *shared
-    anchor-40: *shared
-    anchor-41: *shared
-    anchor-42: *shared
-    anchor-43: *shared
-    anchor-44: *shared
-    anchor-45: *shared
-    anchor-46: *shared
-    anchor-47: *shared
-    anchor-48: *shared
-    anchor-49: *shared
-    anchor-50: *shared
+      - checkout
+      - run:
+          name: "checkout submodules"
+          command: |
+            git submodule update --init
+  test2:
+    <<: *dummy-job
+    environment: *envvars-test
+  test3:
+    <<: *dummy-job
+    environment: *envvars-test
+  test4:
+    <<: *dummy-job
+    environment: *envvars-test
+  test5:
+    <<: *dummy-job
+    environment: *envvars-test
+  test6:
+    <<: *dummy-job
+    environment: *envvars-test
+  test7:
+    <<: *dummy-job
+    environment: *envvars-test
+  test8:
+    <<: *dummy-job
+    environment: *envvars-test
+  test9:
+    <<: *dummy-job
+    environment: *envvars-test
+  test10:
+    <<: *dummy-job
+    environment: *envvars-test
+  test11:
+    <<: *dummy-job
+    environment: *envvars-test
+  test12:
+    <<: *dummy-job
+    environment: *envvars-test
+  test13:
+    <<: *dummy-job
+    environment: *envvars-test
+  test14:
+    <<: *dummy-job
+    environment: *envvars-test
+  test15:
+    <<: *dummy-job
+    environment: *envvars-test
+  test16:
+    <<: *dummy-job
+    environment: *envvars-test
+  test17:
+    <<: *dummy-job
+    environment: *envvars-test
+  test18:
+    <<: *dummy-job
+    environment: *envvars-test
+  test19:
+    <<: *dummy-job
+    environment: *envvars-test
+  test20:
+    <<: *dummy-job
+    environment: *envvars-test
+  test21:
+    <<: *dummy-job
+    environment: *envvars-test
+  test22:
+    <<: *dummy-job
+    environment: *envvars-test
+  test23:
+    <<: *dummy-job
+    environment: *envvars-test
+  test24:
+    <<: *dummy-job
+    environment: *envvars-test
+  test25:
+    <<: *dummy-job
+    environment: *envvars-test
+  test26:
+    <<: *dummy-job
+    environment: *envvars-test
+  test27:
+    <<: *dummy-job
+    environment: *envvars-test
+  test28:
+    <<: *dummy-job
+    environment: *envvars-test
+  test29:
+    <<: *dummy-job
+    environment: *envvars-test
+  test30:
+    <<: *dummy-job
+    environment: *envvars-test
 
-    # Removing this will revive the resource class specification of this job
-    anchor-51: *shared
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
