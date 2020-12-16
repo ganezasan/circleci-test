@@ -1,19 +1,65 @@
 version: 2
+
+shared: &shared
+  foo: bar
+
 jobs:
   build:
-    docker: 
-      - image: circleci/node:latest
-      - image: nginx:latest
-      - image: circleci/postgres:9.6-alpine
-    environment:
-        POSTGRES_USER: postgres
-        POSTGRES_DB: postgres
-        POSTGRES_PASSWORD: pytestSamplePassword12345
+    docker:
+      - image: alpine
+    resource_class: large
     steps:
-      - run: sleep 3000
+      - run: exit
+    anchor-1: *shared
+    anchor-2: *shared
+    anchor-3: *shared
+    anchor-4: *shared
+    anchor-5: *shared
+    anchor-6: *shared
+    anchor-7: *shared
+    anchor-8: *shared
+    anchor-9: *shared
+    anchor-10: *shared
+    anchor-11: *shared
+    anchor-12: *shared
+    anchor-13: *shared
+    anchor-14: *shared
+    anchor-15: *shared
+    anchor-16: *shared
+    anchor-17: *shared
+    anchor-18: *shared
+    anchor-19: *shared
+    anchor-20: *shared
+    anchor-21: *shared
+    anchor-22: *shared
+    anchor-23: *shared
+    anchor-24: *shared
+    anchor-25: *shared
+    anchor-26: *shared
+    anchor-27: *shared
+    anchor-28: *shared
+    anchor-29: *shared
+    anchor-30: *shared
+    anchor-31: *shared
+    anchor-32: *shared
+    anchor-33: *shared
+    anchor-34: *shared
+    anchor-35: *shared
+    anchor-36: *shared
+    anchor-37: *shared
+    anchor-38: *shared
+    anchor-39: *shared
+    anchor-40: *shared
+    anchor-41: *shared
+    anchor-42: *shared
+    anchor-43: *shared
+    anchor-44: *shared
+    anchor-45: *shared
+    anchor-46: *shared
+    anchor-47: *shared
+    anchor-48: *shared
+    anchor-49: *shared
+    anchor-50: *shared
 
-workflows:
-  version: 2
-  workflow:
-    jobs:
-      - build
+    # Removing this will revive the resource class specification of this job
+    anchor-51: *shared
