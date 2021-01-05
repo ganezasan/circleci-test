@@ -1,6 +1,7 @@
 version: 2
 jobs:
   test:
+    parallelism: 30
     docker:
       - image: circleci/node:12.16.0
       - image: nginx:1.19.6-alpine
