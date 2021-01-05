@@ -24,5 +24,13 @@ workflows:
     #             - master
     jobs:
       - test
-
+  test-1:
+    jobs:
+      - test
+  test-2:
+    jobs:
+      - test
+  test-3:
+    jobs:
+      - test
 
