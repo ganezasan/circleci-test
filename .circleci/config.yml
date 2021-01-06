@@ -1,36 +1,31 @@
 version: 2
 jobs:
   test:
-    parallelism: 30
     docker:
       - image: circleci/node:12.16.0
-      - image: nginx:1.19.6-alpine
     steps:
-      - run:
-          name: "ab command install"
-          command: |
-            sudo apt-get update && sudo apt-get install apache2
-            ab -n 1000000 -c 1000 http://localhost/
+    - checkout
+    - restore_cache:
+        keys:
+        - v1-app-{{ checksum "yarn.lock" }}
+        - v1-app-
+    - run: yarn install
+    - save_cache:
+        paths:
+          - node_modules
+        key: v1-app-{{ checksum "yarn.lock" }}
+    - run:
+        name: Run tests with JUnit as reporter
+        command: yarn run test
+    - codecov/upload:
+        file: reports/coverage/clover.xml
+    - store_test_results:
+        path: reports
+    - store_artifacts:
+        path: reports
 
 workflows:
   version: 2
   test:
-    # triggers:
-    #   - schedule:
-    #       cron: "* * * * *"
-    #       filters:
-    #         branches:
-    #           only:
-    #             - master
     jobs:
       - test
-  test-1:
-    jobs:
-      - test
-  test-2:
-    jobs:
-      - test
-  test-3:
-    jobs:
-      - test
-
