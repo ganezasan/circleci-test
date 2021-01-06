@@ -7,18 +7,16 @@ jobs:
     - checkout
     - restore_cache:
         keys:
-        - v1-app-{{ checksum "yarn.lock" }}
+        - v1-app-{{ checksum "package-lock.json" }}
         - v1-app-
     - run: yarn install
     - save_cache:
         paths:
           - node_modules
-        key: v1-app-{{ checksum "yarn.lock" }}
+        key: v1-app-{{ checksum "package-lock.json" }}
     - run:
         name: Run tests with JUnit as reporter
         command: yarn run test
-    - codecov/upload:
-        file: reports/coverage/clover.xml
     - store_test_results:
         path: reports
     - store_artifacts:
